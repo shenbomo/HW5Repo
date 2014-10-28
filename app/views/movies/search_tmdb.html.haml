@@ -1,0 +1,19 @@
+%h1= "The following movies containing '#{params[:search_terms]}' were found on TMDb:"
+
+= form_tag movies_add_tmdb_path do
+  %table#movies
+    %thead
+      %tr
+        %th Movie Title
+        %th Rating
+        %th Release Date
+        %th Select
+    %tbody
+      - @movies.each do |movie|
+        %tr
+          %td= movie.title 
+          %td= "R"
+          %td= movie.release_date
+          %td= check_box_tag "moviesHash[#{movie.id}]"
+    = submit_tag 'Add Selected Movies'      
+
